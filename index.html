@@ -12,45 +12,47 @@
 		<link href="css/style.css" rel="stylesheet">
 	</head>
 	<body>
-		<div class="lk-wrapper">
-			<div class="lk-content">
-				<div class="container-fluid">
-					<div class="col-md-2">
-						<div class="point">
-					
-							<nav class="lk-nav"> <!-- off viewport navigation -->
-				                <p class="lk-close">&times;</p>
-				               	<h4>FREELANCER</h4>
-				                <ul>
-				                   <h5>HOME</h5>
-									<hr>
-									<li><a href=""><i class="fa fa-search"></i></a>Overview</li>
-									<hr>
-									<li><a href=""><i class="fa fa-user-o"></i></a>Members</li>
-									<hr>
-									<li><a href=""><i class="fa fa-file-pdf-o"></i></a>Reports<span class="badge">3</span></li>
-									<hr>
-									<li><a href=""><i class="fa fa-folder-open-o"></i></a>Schedule</li>
-									<hr>
-									<li><a href=""><i class="fa fa-file-o"></i></a>Services<span class="badge">11</span></li>
-									<hr>
-									<li><a href=""><i class="fa fa-handshake-o"></i></a>Marketing</li>
-									<hr>
-									<li><a href=""><i class="fa fa-pencil"></i></a>Settings</li>
-									<hr>
-									<h5 class="control">visit store</h5> 
-				                </ul>
-				            </nav> <!-- end off viewport nav -->
-				        </div>
-			        </div> <!-- lk-content -->
-			    
+		<div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+        	<h4>FREELANCER</h4>
+            <ul class="nav sidebar-nav">
+               	
+				<h5>HOME</h5>
+				<hr class="vim">
+				<li><a href=""><i class="fa fa-search"></i>Overview</a></li>
+				<hr class="vim">
+				<li><a href=""><i class="fa fa-user-o"></i>Members</a></li>
+				<hr class="vim">
+				<li><a href=""><i class="fa fa-file-pdf-o"></i>Reports</a><span class="badge">3</span></li>
+				<hr class="vim">
+				<li><a href=""><i class="fa fa-folder-open-o"></i>Schedule</a></li>
+				<hr class="vim">
+				<li><a href=""><i class="fa fa-file-o"></i>Services</a><span class="badge">11</span></li>
+				<hr class="vim">
+				<li><a href=""><i class="fa fa-handshake-o"></i>Marketing</a></li>
+				<hr class="vim">
+				<li><a href=""><i class="fa fa-pencil"></i>Settings</a></li>
+				<hr class="vim">
+				<h5 class="control">visit store</h5>
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
 
-							
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+    			<span class="hamb-middle"></span>
+				<span class="hamb-bottom"></span>
+            </button>
+            <div class="container">
+                
+                    <div class="col-md-10 col-md-offset-2">
+                       <div class="navbar navbar-default">
 						
-						
-					<div class="col-md-10 main-content">
-						<div class="navbar navbar-default">
-							<a href="#" class="lk-toggle-nav"></a>
 					            
 
 							<div class="collapse navbar-collapse" id="mynavbar-content">
@@ -186,19 +188,23 @@
 										</tr>
 									</tbody>
 								</table>
-							</div>	
-						</div>
-					</div>
-				</div>
-		    </div>                        
+							</div>              
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <!-- /#page-content-wrapper -->
+
+	    </div>
+	    <!-- /#wrapper -->		
+
+
 
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/raphael.min.js"></script>
 		<script src="morris/morris.min.js"></script>
-
 		<script>
-			
 						/*
 			 * Play with this code and it'll update in the panel opposite.
 			 *
@@ -219,38 +225,35 @@
 			  ykeys: ['a', 'b'],
 			  labels: ['Series A', 'Series B']
 			});
-
-						/*********************************************
-			*                ON DOM READY                *
-			*********************************************/
-			$(function() {
-			    $('.lk-toggle-nav').click(function() {
-			        toggleNav();
-			    });
-			    $('.lk-close').click(function() {
-			        toggleNav();
-			    });
-			});
-
 			
-			/*********************************************
-			*                  FUNCTIONS                 *
-			*********************************************/
-			function toggleNav() {
-			    if($('.lk-wrapper').hasClass('show-nav')) {
-			        $('.lk-wrapper').removeClass('show-nav');
-			    }
-			    else {
-			        $('.lk-wrapper').addClass('show-nav');
-			    }
-			}
+			$(document).ready(function () {
+				  var trigger = $('.hamburger'),
+				      overlay = $('.overlay'),
+				     isClosed = false;
 
+				    trigger.click(function () {
+				      hamburger_cross();      
+				    });
 
+				    function hamburger_cross() {
 
-
-
-
-
+				      if (isClosed == true) {          
+				        overlay.hide();
+				        trigger.removeClass('is-open');
+				        trigger.addClass('is-closed');
+				        isClosed = false;
+				      } else {   
+				        overlay.show();
+				        trigger.removeClass('is-closed');
+				        trigger.addClass('is-open');
+				        isClosed = true;
+				      }
+				  }
+				  
+				  $('[data-toggle="offcanvas"]').click(function () {
+				        $('#wrapper').toggleClass('toggled');
+				  });  
+			});
 		</script>
 	</body>
-</html>
+</html>	
